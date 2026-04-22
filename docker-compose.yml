@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  flaskapp:
+    build: .
+    container_name: flask_face_auth
+    ports:
+      - "8000:5000"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+    volumes:
+      - .:/app
+    restart: unless-stopped

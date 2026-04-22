@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title or "Flask Auth" }}</title>
+
+    <!-- Activer le mode dark -->
+    <script>
+        tailwind.config = {
+            darkMode: "class"
+        }
+    </script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Script Dark/Light -->
+    <script>
+        if (localStorage.getItem("theme") === "light") {
+            document.documentElement.classList.remove("dark");
+        } else {
+            document.documentElement.classList.add("dark");
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains("dark");
+
+            if (isDark) {
+                html.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+            } else {
+                html.classList.add("dark");
+                localStorage.setItem("theme", "dark");
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-blue-900 dark:bg-blue-950 text-white py-4 shadow">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center">
+
+            <!-- Logo / Titre -->
+            <h1 class="text-xl font-semibold">Flask Auth</h1>
+
+            <!-- Navigation dynamique -->
+            <nav class="flex gap-4 text-sm items-center">
+
+                {% if session.get("user") %}
+                    <span class="opacity-80">Bonjour {{ session.user }}</span>
+                    <a href="/" class="hover:underline">Accueil</a>
+                    <a href="/dashboard" class="hover:underline">Dashboard</a>
+                    <a href="/profile" class="hover:underline">Profil</a>
+                    <a href="/logout" class="hover:underline text-red-300">Logout</a>
+                {% else %}
+                    <a href="/login" class="hover:underline">Login</a>
+                    <a href="/register" class="hover:underline">Register</a>
+                {% endif %}
+
+                <!-- Bouton Dark/Light -->
+                <button onclick="toggleTheme()" 
+                        class="ml-4 px-3 py-1 rounded bg-white/20 hover:bg-white/30 transition text-sm">
+                    Mode
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FLASH MESSAGES -->
+    <div class="max-w-md mx-auto mt-6 w-full px-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, msg in messages %}
+                    <div class="p-3 rounded mb-3 text-white 
+                        {% if category == 'error' %} bg-red-600 
+                        {% elif category == 'success' %} bg-green-600 
+                        {% else %} bg-gray-700 {% endif %}">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <main class="flex-grow flex items-center justify-center px-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-blue-900 dark:bg-blue-950 text-white py-4 mt-10">
+        <div class="max-w-5xl mx-auto px-4 text-center text-sm opacity-80">
+            © {{ 2026 }} Flask Auth — Projet étudiant
+        </div>
+    </footer>
+
+</body>
+</html>

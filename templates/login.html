@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+        Connexion
+    </h2>
+
+    <form method="POST" class="flex flex-col gap-4">
+
+        <!-- Email -->
+        <input 
+            type="email" 
+            name="email" 
+            placeholder="Adresse email"
+            class="border border-gray-300 rounded px-3 py-2 
+                   focus:outline-none focus:ring-2 focus:ring-blue-700"
+            required
+        >
+
+        <!-- Password -->
+        <input 
+            type="password" 
+            name="password" 
+            placeholder="Mot de passe"
+            class="border border-gray-300 rounded px-3 py-2 
+                   focus:outline-none focus:ring-2 focus:ring-blue-700"
+            required
+        >
+
+        <!-- Submit -->
+        <button 
+            type="submit"
+            class="bg-blue-900 text-white py-2 rounded 
+                   hover:bg-blue-800 transition"
+        >
+            Se connecter
+        </button>
+    </form>
+
+    <!-- Connexion faciale -->
+    <div class="mt-6 text-center">
+        <button onclick="startFaceLogin()" 
+                class="text-blue-900 font-medium hover:underline">
+            Connexion par reconnaissance faciale
+        </button>
+    </div>
+
+    <!-- Webcam -->
+    <div class="flex justify-center mt-4">
+        <video id="video" autoplay playsinline 
+               class="rounded shadow-md w-48 h-36 bg-black"></video>
+    </div>
+
+    <p class="text-sm text-gray-600 mt-4 text-center">
+        Pas encore de compte ?
+        <a href="/register" class="text-blue-900 font-medium hover:underline">
+            Créer un compte
+        </a>
+    </p>
+    <!-- Scripts -->
+    <script src="/static/js/face_capture.js"></script>
+
+    <script>
+    function startFaceLogin() {
+        const email = document.querySelector("input[name='email']").value;
+
+        if (!email) {
+            alert("Veuillez entrer votre email d'abord.");
+            return;
+        }
+
+        // Capture et login gérés dans face_capture.js
+        captureAndLogin(email);
+    }
+    </script>
+
+</div>
+
+{% endblock %}
+
+
