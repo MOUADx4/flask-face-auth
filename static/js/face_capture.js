@@ -1,6 +1,6 @@
-// ===============================
+
 // Activation de la webcam
-// ===============================
+
 const video = document.querySelector("#video");
 
 if (video) {
@@ -9,9 +9,8 @@ if (video) {
         .catch(err => console.error("Erreur webcam:", err));
 }
 
-// ===============================
 // Capture pour l'inscription
-// ===============================
+
 const captureBtn = document.querySelector("#capture-face");
 
 if (captureBtn) {
@@ -32,9 +31,9 @@ if (captureBtn) {
     };
 }
 
-// ===============================
+
 // Capture pour le LOGIN facial
-// ===============================
+
 async function captureAndLogin(email) {
     if (!video) {
         alert("Webcam non détectée");
