@@ -1,7 +1,7 @@
 # ============================
-# 1. Base image (FORCE AMD64)
+# 1. Base image (ARM64 native)
 # ============================
-FROM --platform=linux/amd64 python:3.9-slim
+FROM python:3.10-slim
 
 # ============================
 # 2. Install system dependencies
@@ -15,10 +15,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libboost-all-dev \
     python3-dev \
-    libgtk2.0-dev \
-    libavcodec-dev \
-    libavformat-dev \
-    libswscale-dev \
+    libgtk-3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # ============================
