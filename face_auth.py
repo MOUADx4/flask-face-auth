@@ -4,9 +4,8 @@ import face_recognition
 import cv2
 
 
-# ---------------------------------------------------------
 #   EXTRACTION ENCODAGE FACIAL DEPUIS BASE64
-# ---------------------------------------------------------
+
 def extract_face_encoding(base64_image):
     """
     Reçoit une image base64 (data:image/jpeg;base64,...)
@@ -43,9 +42,8 @@ def extract_face_encoding(base64_image):
         return None
 
 
-# ---------------------------------------------------------
 #   COMPARAISON DES ENCODAGES
-# ---------------------------------------------------------
+
 def compare_encodings(known_encoding, new_encoding, tolerance=0.45):
     """
     known_encoding : encodage stocké en base (list ou numpy array)

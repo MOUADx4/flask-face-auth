@@ -2,7 +2,6 @@ import boto3
 from dotenv import load_dotenv
 import os
 
-# Charger les variables d'environnement depuis .env
 load_dotenv()
 
 AWS_REGION = os.getenv("AWS_REGION")

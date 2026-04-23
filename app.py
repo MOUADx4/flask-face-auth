@@ -9,16 +9,16 @@ from connect import get_users_table
 from face_auth import extract_face_encoding, compare_encodings
 
 
-# ---------------------------------------------------------
+
 #   CONFIG FLASK
-# ---------------------------------------------------------
+
 app = Flask(__name__)
 app.secret_key = "supersecretkey"   
 
 
-# ---------------------------------------------------------
+
 #   DECORATEURS
-# ---------------------------------------------------------
+
 def login_required(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
@@ -29,9 +29,9 @@ def login_required(f):
     return wrapper
 
 
-# ---------------------------------------------------------
-#   ROUTES PUBLIQUES
-# ---------------------------------------------------------
+
+#   ROUTES 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -63,7 +63,7 @@ def register():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
-        face_image = request.form.get("face_image")  # image base64 envoyée par JS
+        face_image = request.form.get("face_image") 
 
         table = get_users_table()
 
@@ -113,9 +113,9 @@ def test_db():
     return {"status": "ok", "table": table.table_name}
 
 
-# ---------------------------------------------------------
+
 #   ROUTES PROTÉGÉES
-# ---------------------------------------------------------
+
 @app.route("/")
 @login_required
 def index():
@@ -141,9 +141,9 @@ def dashboard():
     return render_template("dashboard.html", title="Dashboard")
 
 
-# ---------------------------------------------------------
-#   API : AUTHENTIFICATION FACIALE
-# ---------------------------------------------------------
+
+#   API : AUTH FACIALE
+
 @app.route("/login/face", methods=["POST"])
 def login_face():
     data = request.get_json()
@@ -185,9 +185,8 @@ def login_face():
     return jsonify({"success": False, "message": "Visage non reconnu"})
 
 
-# ---------------------------------------------------------
 #   RUN
-# ---------------------------------------------------------
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
 
