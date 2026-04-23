@@ -1,10 +1,14 @@
 # Flask Face Auth — Authentification Sécurisée avec Reconnaissance Faciale
 
-Application web moderne permettant une authentification hybride :
+<div align="center">
 
-- 🔐 Email / Mot de passe  
-- 👤 Reconnaissance faciale via webcam  
-- ☁️ Stockage cloud avec DynamoDB  
+<img src="https://img.shields.io/badge/Flask-2.0-black?logo=flask&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-3.9-3776AB?logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/AWS-DynamoDB-4053D6?logo=amazonaws&logoColor=white" />
+<img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?logo=opencv&logoColor=white" />
+<img src="https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white" />
+
+</div>
 
 ---
 
