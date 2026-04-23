@@ -41,7 +41,7 @@ Ce projet consiste à développer une application web sécurisée basée sur Fla
 
 ## Modélisation DynamoDB
 
-### Table : `users`
+### Table : `AppUsers`
 
 | Attribut | Type | Description |
 |--------|------|------------|
